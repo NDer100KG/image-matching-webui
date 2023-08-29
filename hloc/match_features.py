@@ -129,6 +129,14 @@ confs = {
             "match_threshold": 0.2,
         },
     },
+    "Hamming":{
+        "output": "Hamming",
+        "model": {
+            "name": "hamming_distance",
+            "cross_check": True,
+            "max_matching": 1000,
+        },
+    },
     "Dual-Softmax": {
         "output": "matches-Dual-Softmax",
         "model": {

@@ -535,6 +535,11 @@ matcher_zoo = {
         "config_feature": extract_features.confs["sift"],
         "dense": False,
     },
+    "orb":{
+        "config": match_features.confs["Hamming"],
+        "config_feature": extract_features.confs["orb"],
+        "dense": False,
+    },
     "roma": {"config": match_dense.confs["roma"], "dense": True},
     "DKMv3": {"config": match_dense.confs["dkm"], "dense": True},
 }

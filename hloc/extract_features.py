@@ -146,6 +146,21 @@ confs = {
             "dfactor": 8,
         },
     },
+    "orb": {
+        "output": "feats-orb-n5000-r1600",
+        "model": {
+            "name": "orb",
+            "max_keypoints": 5000,
+        },
+        "preprocessing": {
+            "grayscale": False,
+            "force_resize": True,
+            "resize_max": 1600,
+            "width": 640,
+            "height": 480,
+            "dfactor": 8,
+        },
+    },
     "sosnet": {
         "output": "feats-sosnet-n5000-r1600",
         "model": {
