@@ -6,6 +6,7 @@ from common.utils import (
     run_matching,
     ransac_zoo,
     gen_examples,
+    DEFAULT_RANSAC,
 )
 
 DESCRIPTION = """
@@ -14,11 +15,14 @@ This Space demonstrates [Image Matching WebUI](https://github.com/Vincentqyw/ima
 
 🔎 For more details about supported local features and matchers, please refer to https://github.com/Vincentqyw/image-matching-webui
 
+🚀 All algorithms run on CPU for inference on HF, causing slow speeds and high latency. For faster inference, please download the [source code](https://github.com/Vincentqyw/image-matching-webui) for local deployment or check [openxlab space](https://openxlab.org.cn/apps/detail/Realcat/image-matching-webui) and [direct URL](https://g-app-center-083997-7409-n9elr1.openxlab.space) 
+
+🐛 Your feedback is valuable to me. Please do not hesitate to report any bugs [here](https://github.com/Vincentqyw/image-matching-webui/issues).
 """
 
 
 def ui_change_imagebox(choice):
-    return {"value": None, "source": choice, "__type__": "update"}
+    return {"value": None, "sources": choice, "__type__": "update"}
 
 
 def ui_reset_state(
@@ -29,7 +33,7 @@ def ui_reset_state(
     keypoint_threshold,
     key,
     # enable_ransac=False,
-    ransac_method="RANSAC",
+    ransac_method=DEFAULT_RANSAC,
     ransac_reproj_threshold=8,
     ransac_confidence=0.999,
     ransac_max_iter=10000,
@@ -59,8 +63,7 @@ def ui_reset_state(
         {},
         None,
         {},
-        # False,
-        "RANSAC",
+        DEFAULT_RANSAC,
         8,
         0.999,
         10000,
@@ -91,21 +94,21 @@ def run(config):
                     input_image0 = gr.Image(
                         label="Image 0",
                         type="numpy",
-                        interactive=True,
                         image_mode="RGB",
+                        height=300,
+                        interactive=True,
                     )
                     input_image1 = gr.Image(
                         label="Image 1",
                         type="numpy",
-                        interactive=True,
                         image_mode="RGB",
+                        height=300,
+                        interactive=True,
                     )
 
                 with gr.Row():
-                    button_reset = gr.Button(label="Reset", value="Reset")
-                    button_run = gr.Button(
-                        label="Run Match", value="Run Match", variant="primary"
-                    )
+                    button_reset = gr.Button(value="Reset")
+                    button_run = gr.Button(value="Run Match", variant="primary")
 
                 with gr.Accordion("Advanced Setting", open=False):
                     with gr.Accordion("Matching Setting", open=True):
@@ -150,7 +153,7 @@ def run(config):
                             # enable_ransac = gr.Checkbox(label="Enable RANSAC")
                             ransac_method = gr.Dropdown(
                                 choices=ransac_zoo.keys(),
-                                value="RANSAC",
+                                value=DEFAULT_RANSAC,
                                 label="RANSAC Method",
                                 interactive=True,
                             )
@@ -240,9 +243,13 @@ def run(config):
                     output_wrapped = gr.Image(
                         label="Wrapped Pair", type="numpy"
                     )
-                    with gr.Accordion("Open for More: Geometry info", open=False):
-                        geometry_result = gr.JSON(label="Reconstructed Geometry")
-            
+                    with gr.Accordion(
+                        "Open for More: Geometry info", open=False
+                    ):
+                        geometry_result = gr.JSON(
+                            label="Reconstructed Geometry"
+                        )
+
             # callbacks
             match_image_src.change(
                 fn=ui_change_imagebox,

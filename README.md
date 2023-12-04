@@ -4,7 +4,8 @@
 [![Issues][issues-shield]][issues-url]
 
 <p align="center">
-  <h1 align="center"><br><ins>Image Matching WebUI</ins><br>find matches between 2 images</h1> 
+  <h1 align="center"><br><ins>$\color{red}{\textnormal{Image\ Matching\ WebUI}}$
+</ins><br>find matches between 2 images</h1> 
 </p>
 
 ## Description
@@ -36,6 +37,7 @@ The tool currently supports various popular image matching algorithms, namely:
 - [ ] [LISRD](https://github.com/rpautrat/LISRD), ECCV 2022
 - [ ] [REKD](https://github.com/bluedream1121/REKD), CVPR 2022
 - [x] [ALIKE](https://github.com/Shiaoming/ALIKE), ArXiv 2022
+- [x] [RoRD](https://github.com/UditSinghParihar/RoRD), IROS 2021
 - [x] [SGMNet](https://github.com/vdvchen/SGMNet), ICCV 2021
 - [x] [SuperPoint](https://github.com/magicleap/SuperPointPretrainedNetwork), CVPRW 2018
 - [x] [SuperGlue](https://github.com/magicleap/SuperGluePretrainedNetwork), CVPR 2020
